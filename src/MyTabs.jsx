@@ -2,44 +2,44 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Feed from '@screens/Feed';
-import Notifications from '@screens/Notifications';
-import Profile from '@screens/Profile';
+import Devices from '@screens/Devices';
+import Areas from '@screens/Areas';
+import Dashboard from '@screens/Dashboard';
 
 const Tab = createBottomTabNavigator();
 
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="Thiết bị"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
       }}>
       <Tab.Screen
-        name="Feed"
-        component={Feed}
+        name="Thiết bị"
+        component={Devices}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Thiết bị',
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Notifications"
-        component={Notifications}
+        name="Khu vực"
+        component={Areas}
         options={{
-          tabBarLabel: 'Updates',
+          tabBarLabel: 'Khu vực',
           tabBarIcon: ({color, size}) => (
             <Icon name="bell" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="Thống kê"
+        component={Dashboard}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'Thống kê',
           tabBarIcon: ({color, size}) => (
             <Icon name="account" color={color} size={size} />
           ),
