@@ -10,6 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@miblanchard/react-native-slider": "^2.6.0",
+    "@mui/material": "^5.15.14",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
