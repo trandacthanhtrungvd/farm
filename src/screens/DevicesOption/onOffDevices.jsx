@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, Text, View, Image, Switch } from 'react-native';
 import {Slider} from '@miblanchard/react-native-slider';
 
 
-const DeviceItem = ({ name, status, location, intensity , onStatusChange  }) => {
+const DeviceItem = ({ name, status, location, intensity , onStatusChange, onIntensityChange  }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(status === 'Bật');
 
   const handleSwitchChange = () => {
@@ -12,24 +12,14 @@ const DeviceItem = ({ name, status, location, intensity , onStatusChange  }) => 
     setIsSwitchOn(newStatus === 'Bật') ;
     onStatusChange(name, newStatus);
   };
-  // const toggleSwitch = ({ name, status, location }) => {
-  //   if (status === 'Bật') {
-  //     status = 'Tắt';
+  const handleIntensityChange = (value) => {
+    if (value === 0 && isSwitchOn) handleSwitchChange;
+    else {
+      if (!isSwitchOn) handleSwitchChange;
       
-  //   }
-  //   else if (status === 'Tắt') {
-  //     status = 'Bật';
-  //   }
-  //   const nextShapes = devices.map(device => {
-  //     if (device.name === name) {
-  //       device.status = status;
-  //     }
-  //     return device;
-  //   });
-  //   // handleStatusChange(name,status)
-  //   setDevices(nextShapes);
-  //   setIsEnabled(previousState => !previousState)
-  // };
+    }
+    onIntensityChange(name, value);
+  };
   return (
     <View style={styles.deviceItem}>
       <Image
@@ -58,7 +48,7 @@ const DeviceItem = ({ name, status, location, intensity , onStatusChange  }) => 
                     thumbTintColor="#ffffff"
                     
                     value={intensity/100}
-                    // onValueChange={value => this.setState({value})}
+                    onValueChange={value => handleIntensityChange(value)}
                 />
           </View>
         </View>
@@ -97,15 +87,15 @@ const DeviceList = () => {
     });
     setDevices(updatedDeviceList);
   };
-  // const handleStatusChange = (deviceName, newStatus) => {
-  //   const updatedDevices = devices.map(device => {
-  //     if (device.name === deviceName) {
-  //       return { ...device, status: newStatus };
-  //     }
-  //     return device;
-  //   });
-  //   setDevices(updatedDevices);
-  // };
+  const handleIntensityChange = (deviceName, intensity) => {
+    const updatedDeviceList = devices.map(device => {
+      if (device.name === deviceName) {
+        return { ...device, intensity: intensity };
+      }
+      return device;
+    });
+    setDevices(updatedDeviceList);
+  }
 
   
   // useEffect(() => {
@@ -141,7 +131,6 @@ const DeviceList = () => {
 
 const styles = StyleSheet.create({
   deviceList: {
-    // heights: '50%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -172,7 +161,6 @@ const styles = StyleSheet.create({
   swi_and_sli: {
     display: 'flex',
     flexDirection: 'row',
-    // alignContent: 'space-between',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
