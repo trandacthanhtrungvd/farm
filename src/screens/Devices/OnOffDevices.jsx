@@ -57,7 +57,7 @@ const DeviceItem = ({ name, status, location, intensity , onStatusChange, onInte
   );
 };
 
-const DeviceList = () => {
+const OnOffDevices = () => {
   const [devices,setDevices] = useState([
     {
       name: 'Vòi nước 1',
@@ -179,5 +179,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeviceList;
+export default OnOffDevices;
 
